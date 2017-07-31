@@ -1,0 +1,61 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js prototype</title>
+		<script src="https://unpkg.com/vue"></script>
+		<script src="../proto.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div v-for="option in options">
+				{{option.label}}
+			</div>
+			<szn-select>
+				<select name="test" title="test">
+					<option v-for="option in options" :value="option.id">
+						{{option.label}}
+					</option>
+				</select>
+				<div data-szn-select-element="ui"></div>
+			</szn-select>
+			<div v-for="option in options">
+				{{option.label}}
+			</div>
+			<button v-on:click="addOptions">add options</button>
+		</div>
+		<script>
+(function () {
+
+var app = new Vue({
+	el: '#app',
+	data: {
+		options: [
+			{
+				id: 'da-1',
+				label: 'first'
+			},
+			{
+				id: 'da-2',
+				label: 'second'
+			}
+		]
+	},
+	methods: {
+		addOptions: function () {
+			this.options.unshift({
+				id: 'da-0',
+				label: 'nullth'
+			})
+			this.options.push({
+				id: 'da-3',
+				label: 'third'
+			})
+		}
+	}
+})
+
+}())
+		</script>
+	</body>
+</html>

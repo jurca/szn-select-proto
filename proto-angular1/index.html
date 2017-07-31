@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<title>Angular 1 prototype</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js"></script>
+		<script src="../proto.js"></script>
+		<script>
+(function () {
+
+var myApp = angular.module('myApp', [])
+
+myApp.controller('TestController', ['$scope', function ($scope) {
+	$scope.options = [
+		{
+			id: 'da-1',
+			label: 'first'
+		},
+		{
+			id: 'da-2',
+			label: 'second'
+		}
+	]
+	$scope.selected = $scope.options[1]
+
+	$scope.update = function () {
+		$scope.options.unshift({
+			id: 'da-0',
+			label: 'nullth'
+		})
+		$scope.options.push({
+			id: 'da-3',
+			label: 'third'
+		})
+	}
+}])
+
+}())
+		</script>
+	</head>
+	<body ng-controller="TestController">
+		<div ng-repeat="option in options">
+			{{ option }}
+		</div>
+		<szn-select>
+			<select name="test" title="test" ng-options="option as option.label for option in options track by option.id" ng-model="selected">
+			</select>
+			<div data-szn-select-element="ui"></div>
+		</szn-select>
+		The selected: {{ selected }} &amp; stuff
+		<div>
+			yo
+			<button ng-click="update()">duh</button>
+		</div>
+		The selected: {{ selected }} &amp; stuff
+	</body>
+</html>
