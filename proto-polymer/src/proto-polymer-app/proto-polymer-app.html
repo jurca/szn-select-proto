@@ -1,0 +1,72 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<dom-module id="proto-polymer-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <template is="dom-repeat" items="{{options}}">
+      <div># [[index]] - [[item.label]]</div>
+    </template>
+    <szn-select id="select">
+      <select name="test" title="test">
+        <template is="dom-repeat" items="{{options}}">
+          <option value$="[[item.id]]">
+            [[item.label]]
+          </option>
+        </template>
+      </select>
+      <div data-szn-select-element="ui"></div>
+    </szn-select>
+    <template is="dom-repeat" items="{{options}}">
+      <div># [[index]] - [[item.label]]</div>
+    </template>
+    <button on-click="addOptions">
+      add options
+    </button>
+  </template>
+
+  <script>
+    class ProtoPolymerApp extends Polymer.Element {
+      static get is() { return 'proto-polymer-app'; }
+      static get properties() {
+        return {
+          options: {
+            type: Array,
+            value: () => [
+              {
+                id: 'da-1',
+                label: 'first'
+              },
+              {
+                id: 'da-2',
+                label: 'second'
+              }
+            ]
+          }
+        };
+      }
+
+      ready() {
+        super.ready();
+        initSznSelect(this.$.select);
+      }
+
+      addOptions() {
+        this.unshift('options', {
+          id: 'da-0',
+          label: 'nullth'
+        });
+        this.push('options', {
+          id: 'da-3',
+          label: 'third'
+        });
+      }
+    }
+
+    window.customElements.define(ProtoPolymerApp.is, ProtoPolymerApp);
+  </script>
+</dom-module>

@@ -1,0 +1,7 @@
+{
+  "name": "proto-polymer",
+  "private": true,
+  "scripts": {
+    "serve": "node_modules/polymer-cli/bin/polymer.js serve"
+  }
+}
