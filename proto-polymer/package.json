@@ -3,5 +3,8 @@
   "private": true,
   "scripts": {
     "serve": "node_modules/polymer-cli/bin/polymer.js serve"
+  },
+  "dependencies": {
+    "polymer-cli": "^1.3.1"
   }
 }

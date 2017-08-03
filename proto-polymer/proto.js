@@ -23,5 +23,10 @@
 		sznSelect.setAttribute('data-szn-select-ready', '')
 	}
 
-	window.initSznSelect = initElement;
+	customElements.define('szn-select', class SznSelect extends HTMLElement {
+		constructor() {
+			super();
+			initElement(this);
+		}
+	});
 }())
